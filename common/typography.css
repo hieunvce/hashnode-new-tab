@@ -224,7 +224,7 @@ textarea {
 }
 
 html {
-    font: 100%/1.75 'Merriweather', 'Georgia', serif;
+    font-family: Helvetica, sans-serif;
     box-sizing: border-box;
     overflow-y: scroll;
 }
@@ -243,7 +243,9 @@ html {
 
 body {
     color: hsla(0, 0%, 0%, 0.9);
-    font-family: 'Merriweather', 'Georgia', serif;
+    font-family:  Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    line-height: 1.5;
     font-weight: 400;
     word-wrap: break-word;
     font-kerning: normal;
@@ -292,7 +294,7 @@ h2 {
     padding-top: 0;
     margin-bottom: 1.75rem;
     color: inherit;
-    font-family: 'Merriweather', 'Georgia', serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: 900;
     text-rendering: optimizeLegibility;
     font-size: 1.73286rem;
@@ -309,7 +311,7 @@ h3 {
     padding-top: 0;
     margin-bottom: 1.75rem;
     color: inherit;
-    font-family: 'Merriweather', 'Georgia', serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: 900;
     text-rendering: optimizeLegibility;
     font-size: 1.4427rem;
@@ -326,7 +328,7 @@ h4 {
     padding-top: 0;
     margin-bottom: 1.75rem;
     color: inherit;
-    font-family: 'Merriweather', 'Georgia', serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: 900;
     text-rendering: optimizeLegibility;
     font-size: 1rem;
@@ -345,7 +347,7 @@ h5 {
     padding-top: 0;
     margin-bottom: 1.75rem;
     color: inherit;
-    font-family: 'Merriweather', 'Georgia', serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: 900;
     text-rendering: optimizeLegibility;
     font-size: 0.83255rem;
@@ -362,7 +364,7 @@ h6 {
     padding-top: 0;
     margin-bottom: 1.75rem;
     color: inherit;
-    font-family: 'Merriweather', 'Georgia', serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: 900;
     text-rendering: optimizeLegibility;
     font-size: 0.75966rem;

@@ -1,9 +1,10 @@
 {
-  "name": "morality-new-tab",
-  "displayName": "Morality new tab",
+  "name": "hashnode-new-tab",
+  "displayName": "Hashnode new tab",
   "version": "0.0.0",
-  "description": "A basic Plasmo extension.",
+  "description": "Hashnode new tab.",
   "author": "hieunguyen",
+  "homepage": "https://github.com/hieunvce/hashnode-new-tab",
   "packageManager": "pnpm@6.11.0",
   "scripts": {
     "dev": "plasmo dev",
