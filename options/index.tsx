@@ -3,8 +3,11 @@ import { useStorage } from "@plasmohq/storage"
 import "./options.css"
 
 function IndexOptions() {
-  const [username, setUsername] = useStorage<string>("username", "")
-  const [hostname, setHostname] = useStorage<string>("hostname", "")
+  const [username, setUsername] = useStorage<string>("username", "simplewriter")
+  const [hostname, setHostname] = useStorage<string>(
+    "hostname",
+    "simplewriterr.hashnode.dev"
+  )
 
   return (
     <div

@@ -36,10 +36,10 @@ const getPostContent = async (hostname: string, slug: string) => {
 }
 
 function IndexNewtab() {
-  const [username, setUsername] = useStorage<string>("username", "hieunguyen")
+  const [username, setUsername] = useStorage<string>("username", "simplewriter")
   const [hostname, setHostname] = useStorage<string>(
     "hostname",
-    "simplewriter.hashnode.dev"
+    "simplewriterr.hashnode.dev"
   )
   const [post, setPost] = useState<Post | undefined>(undefined)
   const [errors, setErrors] = useState<string[]>([])
