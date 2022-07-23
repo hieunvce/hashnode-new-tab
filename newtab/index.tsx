@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 
+import { useStorage } from "@plasmohq/storage"
+
 import "./newtab.css"
 
-const RANDOM_PHOTO_FROM_UNSPLASH = "https://source.unsplash.com/random"
 interface Post {
   content: string
   coverImage: string
@@ -35,43 +36,45 @@ const getPostContent = async (hostname: string, slug: string) => {
 }
 
 function IndexNewtab() {
-  const [slug, setSlug] = useState(
-    "code-refactoring-tong-quan-ve-code-xau-va-dep"
-  )
-  const [hostname, setHostname] = useState("simplewriter.hashnode.dev")
+  const [username] = useStorage<string>("username")
+  const [hostname] = useStorage<string>("hostname")
   const [post, setPost] = useState<Post | undefined>(undefined)
-  const [isLoadingPostError, setIsLoadingPostError] = useState(false)
+  const [errors, setErrors] = useState<string[]>([])
 
   useEffect(() => {
-    getPosts("hieunguyen")
-      .then((data) => {
-        const numPosts = data?.data?.user?.numPosts || 0
-        const posts = data?.data?.user?.publication?.posts || []
-        const randomPostIndex = Math.floor(Math.random() * posts.length)
-        const randomPostSlug = posts[randomPostIndex]?.slug || ""
-        getPostContent("simplewriter.hashnode.dev", randomPostSlug).then(
-          (postData) => {
+    if (username && hostname && username.length > 0 && hostname.length > 0) {
+      setErrors([])
+      getPosts(username)
+        .then((data) => {
+          const numPosts = data?.data?.user?.numPosts || 0
+          const posts = data?.data?.user?.publication?.posts || []
+          const randomPostIndex = Math.floor(Math.random() * posts.length)
+          const randomPostSlug = posts[randomPostIndex]?.slug || ""
+          getPostContent(hostname, randomPostSlug).then((postData) => {
             const postContent = postData?.data?.post
             setPost(postContent)
-          }
-        )
-      })
-      .catch((error) => {
-        setIsLoadingPostError(true)
-      })
-  }, [])
+          })
+        })
+        .catch((error) => {
+          setErrors(["Error when loading content from Hashnode."])
+        })
+    } else {
+      setErrors([
+        "Please config Hashnode username and hostname for using this extension."
+      ])
+    }
+  }, [username, hostname])
 
-  const featuredImageSrc = post?.coverImage || RANDOM_PHOTO_FROM_UNSPLASH
+  const featuredImageSrc = post?.coverImage || undefined
+
   return (
     <div className="app-container">
-      {isLoadingPostError ? (
-        <div className="loading-post-error">
-          Something went wrong when loading post. Please try again later.
+      {featuredImageSrc ? (
+        <div className="featured-image">
+          <img src={featuredImageSrc} alt="featured image" />
         </div>
       ) : null}
-      <div className="featured-image">
-        <img src={featuredImageSrc} alt="featured image" />
-      </div>
+
       <div className="post-header">
         <h1 className="post-title">{post?.title || ""}</h1>
       </div>
@@ -80,6 +83,12 @@ function IndexNewtab() {
         className="post-content"
         dangerouslySetInnerHTML={{ __html: post?.content || "" }}
       />
+
+      {errors.map((error) => (
+        <div className="error" key={error.slice(0, 5).replace(" ", "_")}>
+          {error}
+        </div>
+      ))}
 
       <div className="post-footer">
         Be present. Do small things with greate love ❤.

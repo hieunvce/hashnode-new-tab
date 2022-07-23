@@ -1,8 +1,8 @@
-@import url('./typography.css');
+@import url('../common/typography.css');
 
 .app-container {
     max-width: 42rem;
-    margin: 0 auto;
+    margin: 2rem auto;
 }
 
 .featured-image img {
